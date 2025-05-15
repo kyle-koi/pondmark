@@ -1,2 +1,2 @@
 // File: content.js
-console.log("ByteDrop content script loaded.");
+console.log("Pondmark content script loaded.");

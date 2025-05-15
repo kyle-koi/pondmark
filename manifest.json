@@ -1,13 +1,14 @@
 {
   "manifest_version": 3,
-  "name": "ByteDrop",
+  "name": "PondMark",
   "version": "1.0",
   "description": "Highlight text and save it with source link, notes, and organize in directories.",
   "permissions": [
     "contextMenus",
     "storage",
     "activeTab",
-    "scripting"
+    "scripting",
+    "system.display"
   ],
   "background": {
     "service_worker": "background.js"

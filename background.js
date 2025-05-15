@@ -1,17 +1,33 @@
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
     id: "saveSnippet",
-    title: "Save to ByteDrop",
+    title: "Save to Pondmark",
     contexts: ["selection"]
   });
 });
 
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === "saveSnippet") {
-    chrome.scripting.executeScript({
-      target: { tabId: tab.id },
-      function: saveSnippet,
-      args: [info.selectionText, tab.url, tab.title]
+    const url = chrome.runtime.getURL('select_folder.html');
+    const params =
+      '?text=' + encodeURIComponent(info.selectionText) +
+      '&url=' + encodeURIComponent(tab.url) +
+      '&title=' + encodeURIComponent(tab.title);
+    const width = 400;
+    const height = 300;
+    chrome.system.display.getInfo((displays) => {
+      // Use the primary display
+      const display = displays.find(d => d.isPrimary) || displays[0];
+      const left = Math.round(display.workArea.left + (display.workArea.width - width) / 2);
+      const top = Math.round(display.workArea.top + (display.workArea.height - height) / 2);
+      chrome.windows.create({
+        url: url + params,
+        type: 'popup',
+        width,
+        height,
+        left,
+        top
+      });
     });
   }
 });
