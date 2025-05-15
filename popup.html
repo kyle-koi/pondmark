@@ -11,6 +11,10 @@
     .snippet-actions button { margin-right: 5px; }
     .folder-actions { margin-top: 10px; }
     #folderInput { width: 100%; margin-bottom: 5px; padding: 6px; }
+    button { padding: 6px 12px; background: #0070f3; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    button:hover { background: #0051a2; }
+    select { padding: 6px; border-radius: 4px; border: 1px solid #ccc; }
+    input { width: 100%; margin-bottom: 5px; padding: 6px; border-radius: 4px; border: 1px solid #ccc; }
   </style>
 </head>
 <body>
@@ -23,6 +27,11 @@
     <button id="deleteFolder">Delete</button>
   </div>
   <div id="snippets"></div>
+  <h3>Save New Bookmark</h3>
+  <input type="text" id="snippetText" placeholder="Snippet Text" />
+  <input type="text" id="snippetUrl" placeholder="URL" />
+  <input type="text" id="snippetTitle" placeholder="Title" />
+  <button id="saveSnippet">Save Bookmark</button>
   <script src="popup.js"></script>
 </body>
 </html>

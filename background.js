@@ -17,17 +17,29 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
 });
 
 function saveSnippet(selectedText, pageUrl, pageTitle) {
-  const snippet = {
-    id: crypto.randomUUID(),
-    text: selectedText,
-    url: pageUrl,
-    title: pageTitle,
-    time: new Date().toISOString(),
-    folder: "General"
-  };
-  chrome.storage.local.get({ snippets: [] }, (result) => {
-    const snippets = result.snippets;
-    snippets.push(snippet);
-    chrome.storage.local.set({ snippets });
+  chrome.storage.local.get(['folders', 'bookmarks'], (data) => {
+    const folders = data.folders || [];
+    const bookmarks = data.bookmarks || [];
+    let folderId = null;
+    if (folders.length > 0) {
+      const folderNames = folders.map(f => f.name).join(', ');
+      const chosen = prompt('Save to which folder? Available: ' + folderNames, folders[0].name);
+      const folder = folders.find(f => f.name === chosen);
+      folderId = folder ? folder.id : folders[0].id;
+    }
+    if (!folderId) {
+      alert('No folder available. Please create a folder first.');
+      return;
+    }
+    const bookmark = {
+      id: crypto.randomUUID(),
+      text: selectedText,
+      url: pageUrl,
+      title: pageTitle,
+      time: new Date().toISOString(),
+      folderId: folderId
+    };
+    bookmarks.push(bookmark);
+    chrome.storage.local.set({ bookmarks });
   });
 }
