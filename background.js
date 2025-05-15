@@ -18,10 +18,12 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
 
 function saveSnippet(selectedText, pageUrl, pageTitle) {
   const snippet = {
+    id: crypto.randomUUID(),
     text: selectedText,
     url: pageUrl,
     title: pageTitle,
-    time: new Date().toISOString()
+    time: new Date().toISOString(),
+    folder: "General"
   };
   chrome.storage.local.get({ snippets: [] }, (result) => {
     const snippets = result.snippets;
