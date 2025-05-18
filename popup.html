@@ -1,0 +1,37 @@
+<html>
+<head>
+  <title>PondMark</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 10px; width: 360px; background: #f9f9f9; }
+    h2 { margin-top: 0; }
+    .folder-select { margin-bottom: 10px; width: 100%; padding: 6px; }
+    .snippet { background: white; margin-bottom: 10px; padding: 10px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }
+    .snippet small { color: gray; display: block; margin-top: 5px; }
+    .snippet-actions { margin-top: 5px; }
+    .snippet-actions button { margin-right: 5px; }
+    .folder-actions { margin-top: 10px; }
+    #folderInput { width: 100%; margin-bottom: 5px; padding: 6px; }
+    button { padding: 6px 12px; background: #0070f3; color: white; border: none; border-radius: 4px; cursor: pointer; }
+    button:hover { background: #0051a2; }
+    select { padding: 6px; border-radius: 4px; border: 1px solid #ccc; }
+    input { width: 100%; margin-bottom: 5px; padding: 6px; border-radius: 4px; border: 1px solid #ccc; }
+  </style>
+</head>
+<body>
+  <h2>PondMark</h2>
+  <select id="folderSelect" class="folder-select"></select>
+  <input type="text" id="folderInput" placeholder="New or rename folder" />
+  <div class="folder-actions">
+    <button id="createFolder">Create</button>
+    <button id="renameFolder">Rename</button>
+    <button id="deleteFolder">Delete</button>
+  </div>
+  <div id="snippets"></div>
+  <h3>Save New Bookmark</h3>
+  <input type="text" id="snippetText" placeholder="Snippet Text" />
+  <input type="text" id="snippetUrl" placeholder="URL" />
+  <input type="text" id="snippetTitle" placeholder="Title" />
+  <button id="saveSnippet">Save Bookmark</button>
+  <script src="popup.js"></script>
+</body>
+</html>
